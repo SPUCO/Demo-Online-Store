@@ -6,119 +6,160 @@ include('layouts/header.php');
 <!------------- Website Messages----------->
 <p style="color: red; font-weight: bold; text-align: center" class="text-center"><?php if(isset($_GET['error'])){ echo $_GET['error']; }?></p>
 <p style="color: green" class="text-center"><?php if(isset($_GET['message'])){ echo $_GET['message']; }?></p>
+<!------------- offer0 ----------->
+<div class="offer0">
+	<div class="container">
+		<div class="row">
+		<!-- Below Header Intro or Banner --> 
 
-<!-- Navbar -->
-<div class="container">
-	<div class="row"> 
-		<div class="navbar">
-			<img src="assets/images/spuco images/spuco_logo_no.png" alt="Logo1" class="logo1">
-			
-			<a class="active" href="index.php">Home</a>
-			<a href="about.php">About Us</a>
-			<a href="contact.php">Contact Us</a>
-			<a href="#">Events & Competitions</a>
-			<a href="#">Membership</a>
-		</div>
+			<div class="col-2">
+				<h1>Experience Taste Of The Queens!</h1>
+				<p>Doing your best requires you to have the best so do your best discover your hidden potentials & ideas from the tip of your hands. Wine<br>designed for the Queens & Kings.</p>
+				<a href="<?php echo "products.php"; ?>" class="btn">Explore Now &#8594;</a>
+			</div>
+			<div class="col-2">
+			<?php include('layouts/banner.php'); ?>
+				<!-- This was a Home/Index image
+				<img src="assets/images/<//?php echo $row['fldproductimage']; ?>" alt="Snow">-->
+			</div>	
+	  </div>
 	</div>
 </div>
 
-<!------------- Body Header ----------->
-<div class="container">
-	<div class="bodydiv1" style="margin-left: 5vw; margin-top: 10vh">
-		<h1>Welcome To SPU CODERS</h1>
-		<p style="font-weight: bold">Shaping the future with technology</p>
-		<a href="<?php echo "about.php"; ?>" class="btn" style="background-color: green">Learn More &#8594;</a>
-	</div>
-</div>
-
-<!------- Slideshow ----------->
+<!------- featured categories ----------->
 <div class="categories">
-   <h3 class="title">SPU CODERS</h3>
 	<div class="small-container">
 		<div class="row">
 			<div class="col-3">
-				<img src="assets/images/gallery/coding_pics1.jpeg" alt="Snow" style="border-radius: 11%">
+				<img src="assets/images/Gallery.jpg" alt="Snow">
 			</div>
 			<div class="col-3">
-				<img src="assets/images/gallery/coding_pics2.jpg" alt="Snow" style="border-radius: 11%">
+				<img src="assets/images/gallery1.jfif" alt="Snow">
 			</div>
 			<div class="col-3">
-				<img src="assets/images/gallery/coding_pics3.jpg" alt="Snow" style="border-radius: 11%">
+				<img src="assets/images/Gallery2.jpg" alt="Snow">
 			</div>
+			</div>
+		</div>
+</div>
+
+<!------- featured products ----------->
+<div class="small-container">
+	<h2 class="title">Featured Products</h2>
+	<div class="row"> 
+		<!---import the files--->
+		<?php include('server/getfeaturedproducts.php'); ?>
+		<?php while($row = $featuredproducts->fetch_assoc()) { ?>
+		<div class="col-4">
+			<a href="<?php echo "productdetails.php?fldproductid=". $row['fldproductid']; ?>"><img src="assets/images/<?php echo $row['fldproductimage']; ?>" alt="Snow">
+			<h4><?php echo $row['fldproductname']; ?></h4>
+			<div class="rating">
+				<i class="fa fa-star"></i>
+				<i class="fa fa-star"></i>
+				<i class="fa fa-star"></i>
+				<i class="fa fa-star-o"></i>
+				<i class="fa fa-star-o"></i>
+			</div>
+			<p><?php echo $row['fldproductprice']; ?></p>
+		</div>
+		<?php } ?>
+	</div>
+</div>
+
+<!------------- Latest products ----------->
+<div class="small-container">
+	<h2 class="title">Latest Products</h2>
+	<div class="row"> 
+		<!---import the files--->
+		<?php include('server/getlatestproducts.php'); ?>
+		<?php while($row = $latestproducts->fetch_assoc()) { ?>
+		<div class="col-4">
+			<a href="<?php echo "productdetails.php?fldproductid=". $row['fldproductid']; ?>"><img src="assets/images/<?php echo $row['fldproductimage']; ?>" alt="Snow">
+			<h4><?php echo $row['fldproductname']; ?></h4>
+			<div class="rating">
+				<i class="fa fa-star"></i>
+				<i class="fa fa-star"></i>
+				<i class="fa fa-star"></i>
+				<i class="fa fa-star-o"></i>
+				<i class="fa fa-star-o"></i>
+			</div>
+			<p><?php echo $row['fldproductprice']; ?></p>
+		</div>
+		<?php } ?>
+	</div>
+</div>
+
+<!------------- offer ----------->
+<div class="offer">
+	<div class="small-container">
+		<div class="row">
+
+		<!---import the files--->
+		<?php include('server/getofferproducts.php'); ?>
+		<?php while($row = $offerproducts->fetch_assoc()) { ?>
+
+			<div class="col-2">
+				<a href="<?php echo "productdetails.php?fldproductid=". $row['fldproductid']; ?>"><img src="assets/images/<?php echo $row['fldproductimage']; ?>" class="offer-img" alt="Snow"></a>
+				<a href="<?php echo "productdetails.php?fldproductid=". $row['fldproductid']; ?>"><h4><?php echo $row['fldproductname']; ?></h4></a>
+			</div>
+			<div class="col-2">
+				<p>Exclusively Available on our Website</p>
+				<h1><?php echo $row['fldproductname']; ?></h1>
+				<small>The Black Rose is crafted by the leading wine manufacturer in the world.
+					Grapevines located in the Western Cape region offer the juiciest taste ever, only the Queens of the old times would indulge in.<br>
+				</small>
+				<a href="<?php echo "productdetails.php?fldproductid=". $row['fldproductid']; ?>" class="btn">Buy Now &#8594;</a>
+			</div>
+
+			<?php } ?>
+
 		</div>
 	</div>
 </div>
 
-<!------- Club Details ----------->
-<h2 class="title">What is SPUCO?</h2>
-<div class="container">
-	<div class="row">
-		<p>The SPUCO Is Established As An Organization That Aims To Foster, Aid, Inspire And Motivate Students To Broaden Their Skill And Knowledge In Coding. The University Main Focus Is Theory Aspect Of Programming, The SPUCO Is A Platform That Aims To Improve And Focus On The Technical Aspect Of Programming, Which Is Coding. In Achieving This The Club Aims To Organize And Promote Social Activities For Students Specifically Coding Competitions.<br><br></p>
+<!---------- testimonials --------->
+<div class="testimonials">
+	<div class="small-container">
+	  <h2 class="title">Testimonials & Suggestions</h2>
+		<h3 class="titledescription">help us improve by mentioning problems & challenges experienced in our online store. Any response is appreciated.
+		<div class="row">
+			<!---import the files--->
+			<?php include('server/gettestimonials.php'); ?>
+			<?php while($row = $testimonials->fetch_assoc()) { ?>
+			<div class="col-3">
+				<i class="fa fa-quote-left"></i>
+				<p><?php echo $row['fldtestimonialscomment']; ?></p>
+				<div class="rating">
+					<i class="fa fa-star"></i>
+					<i class="fa fa-star"></i>
+					<i class="fa fa-star"></i>
+					<i class="fa fa-star"></i>
+					<i class="fa fa-star-o"></i>
+				</div>
+				<img src="<?php if(isset($row['fldtestimonialsimage'])){ echo "assets/images/".$row['fldtestimonialsimage']; }else{ echo "assets/images/unknownimage.png"; } ?>" alt="Snow">
+				<h3><?php echo $row['fldtestimonialsemail']; ?></h3>
+			</div>
+			<?php } ?>
+		</div>
+		<div class="row">
+		<a href="testimonialslogin.php"><button class="btn">Suggestions...</button></a>
+		</div>
 	</div>
 </div>
 
-
-<!----------- Programming Languages ---------->
-<h3 class="title">PROGRAMMING LANGUAGES</h3>
-<div class="container">
-    <div class="programming_languages">
+<!----------- brands ---------->
+<div class="brands">
+	<div class="small-container">
 		<div class="row">
 			<div class="col-5">
-				<img src="assets/images/programming pics/html_pic.png" alt="Snow">
+				<img src="assets/images/paypalpic.png" alt="Snow">
 			</div>
-			<div class="col-5">
-				<img src="assets/images/programming pics/css_pic.png" alt="Snow">
-			</div>
-			<div class="col-5">
-				<img src="assets/images/programming pics/javascript_pic.jpg" alt="Snow">
-			</div>
-			<div class="col-5">
-				<img src="assets/images/programming pics/php_pic.png" alt="Snow">
-			</div>
-			<div class="col-5">
-				<img src="assets/images/programming pics/sql_pic.png" alt="Snow">
-			</div>
-			<div class="col-5">
-				<img src="assets/images/programming pics/python_pic.png" alt="Snow">
-			</div>
-			<div class="col-5">
-				<img src="assets/images/programming pics/java_pic.png" alt="Snow">
-			</div>
-			<div class="col-5">
-				<img src="assets/images/programming pics/c++_pic.jpg" alt="Snow">
-			</div>
-			<div class="col-5">
-				<img src="assets/images/programming pics/csharp_pic.png" alt="Snow">
-			</div>
-			<div class="col-5">
-				<img src="assets/images/programming pics/github_pic.png" alt="Snow">
-			</div>
-		</div>
-	</div>
-</div>
-	  
-<!----------- Coding Resources ---------->
-<h3 class="title">CODING RESOURCES</h3>
-<div class="container">
-    <div class="row">
-		<div class="col-5">
-			<img src="assets/images/partners pics/google_pic.png" alt="Snow">
-		</div>
-		<div class="col-5">
-			<img src="assets/images/partners pics/microsoft_pic.png" alt="Snow">
-		</div>
-		<div class="col-5">
-			<img src="assets/images/partners pics/ibm_pic.jpg" alt="Snow">
-		</div>
-		<div class="col-5">
-			<img src="assets/images/partners pics/cisco_pic.png" alt="Snow">
-		</div>
-		<div class="col-5">
-			<img src="assets/images/partners pics/moodle_pic.png" alt="Snow">
 		</div>
 	</div>
 </div>
 
 <?php
+
 include('layouts/footer.php');
+	
 ?>
